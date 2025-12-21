@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İstatistikler - Pomodoro</title>
+    <link rel="stylesheet" href="../css/anasayfa.css">
+    <link rel="stylesheet" href="../css/statistics.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="anasayfa-container">
+        
+        <nav class="top-nav">
+            <div class="nav-content">
+                <h1 class="logo">Pomodoro</h1>
+                <div class="nav-links">
+                    <a href="anasayfa.html" class="nav-link">Anasayfa</a>
+                    <a href="statistics.html" class="nav-link active">İstatistikler</a>
+                    <a href="contact.html" class="nav-link">İletişim</a>
+                    <div class="profile-dropdown">
+                        <button id="profileBtn" class="profile-button">
+                            <img src="../images/bosprofil.png" alt="Profil" class="profile-avatar">
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-user-info">
+                                <span id="userEmail" class="user-email"></span>
+                            </div>
+                            <button class="dropdown-item" id="settingsBtn">Ayarlar</button>
+                            <button id="logoutBtn" class="dropdown-item logout-item">Çıkış Yap</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        
+        <main class="statistics-main">
+            <div class="statistics-container">
+                
+                <h2 class="statistics-title">İstatistikler</h2>
+
+                
+                <div class="time-filters">
+                    <button class="filter-btn active" data-period="daily">Günlük</button>
+                    <button class="filter-btn" data-period="weekly">Haftalık</button>
+                    <button class="filter-btn" data-period="monthly">Aylık</button>
+                </div>
+
+                
+                <div class="stats-grid">
+                    
+                    <div class="charts-container">
+                        
+                        <div class="stat-card chart-item-card">
+                            <h3 class="stat-card-title">Toplam Çalışma Süresi</h3>
+                            <div class="chart-item-container">
+                                <canvas id="totalTimeChart"></canvas>
+                            </div>
+                        </div>
+
+                        
+                        <div class="stat-card chart-item-card">
+                            <h3 class="stat-card-title">Tamamlanan Pomodoro</h3>
+                            <div class="chart-item-container">
+                                <canvas id="totalPomodorosChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="stat-card summary-card">
+                        <h3 class="stat-card-title">Özet</h3>
+                        <div class="summary-content">
+                            <div class="summary-item">
+                                <span class="summary-label">Toplam Çalışma Süresi</span>
+                                <span class="summary-value summary-value-orange" id="totalTime">0 dk</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Tam Pomodoro</span>
+                                <span class="summary-value summary-value-green" id="fullPomodoros">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Eksik Pomodoro</span>
+                                <span class="summary-value summary-value-yellow" id="halfPomodoros">0</span>
+                            </div>
+                            <div class="summary-item" id="avgTimeItem">
+                                <span class="summary-label">Ortalama Çalışma Süresi</span>
+                                <span class="summary-value summary-value-blue" id="avgTime">0 dk</span>
+                            </div>
+                            <div class="summary-item" id="bestDayItemSummary">
+                                <span class="summary-label">En Verimli Gün</span>
+                                <span class="summary-value summary-value-cyan" id="bestDay">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="stat-card completed-card">
+                    <h3 class="stat-card-title">Görevler</h3>
+                    <div class="completed-list" id="completedList">
+                        <div class="empty-state">
+                            <p>Henüz tamamlanan pomodoro yok.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-modal-overlay"></div>
+        <div class="settings-modal-content">
+            <div class="settings-header">
+                <h2 class="settings-title">Ayarlar</h2>
+                <button class="settings-close-btn" id="settingsCloseBtn">×</button>
+            </div>
+            
+            <div class="settings-body">
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Görünüm</h3>
+                    <div class="settings-option">
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="light" id="themeLight">
+                            <span class="radio-label">Light Mode</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="dark" id="themeDark" checked>
+                            <span class="radio-label">Dark Mode</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Ses</h3>
+                    <div class="settings-option">
+                        <label class="slider-option">
+                            <span class="slider-label">Ses Seviyesi</span>
+                            <div class="slider-container">
+                                <input type="range" id="soundVolume" class="slider" min="0" max="100" value="50">
+                                <span class="slider-value" id="soundVolumeValue">50%</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-section-title">Pomodoro Tekniği Hakkında</h3>
+                <p class="footer-about">
+                    Pomodoro Tekniği, 1980'lerde Francesco Cirillo tarafından geliştirilen bir zaman yönetimi yöntemidir. 
+                    25 dakikalık odaklanma seansları ve kısa molalarla çalışarak verimliliğinizi artırın. 
+                    Bu teknik, görevleri daha yönetilebilir parçalara bölerek dikkat dağınıklığını azaltır ve 
+                    konsantrasyonunuzu artırır.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-section-title">Hızlı Erişim</h3>
+                <div class="footer-links">
+                    
+                    <a href="contact.html" class="footer-link">İletişim</a>
+                    <a href="statistics.html" class="footer-link">İstatistikler</a>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script src="../js/statistics.js"></script>
+    <script src="../js/anasayfa.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>
+
+

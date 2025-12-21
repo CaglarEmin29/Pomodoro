@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Pomodoro</title>
+    <link rel="stylesheet" href="../css/anasayfa.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="anasayfa-container">
+        
+        <nav class="top-nav">
+            <div class="nav-content">
+                <h1 class="logo">Pomodoro</h1>
+                <div class="nav-links">
+                    <a href="anasayfa.html" class="nav-link">Anasayfa</a>
+                    <a href="statistics.html" class="nav-link">İstatistikler</a>
+                    <a href="contact.html" class="nav-link active">İletişim</a>
+                    <div class="profile-dropdown">
+                        <button id="profileBtn" class="profile-button">
+                            <img src="../images/bosprofil.png" alt="Profil" class="profile-avatar">
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-user-info">
+                                <span id="userEmail" class="user-email"></span>
+                            </div>
+                            <button class="dropdown-item" id="settingsBtn">Ayarlar</button>
+                            <button id="logoutBtn" class="dropdown-item logout-item">Çıkış Yap</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        
+        <main class="contact-main">
+            <div class="contact-container">
+                <div class="contact-header">
+                    <h2 class="contact-title">İletişim</h2>
+                    <p class="contact-subtitle">
+                        Görüş ve bildirimleriniz için iletişime geçin. 
+                        Sorularınız, önerileriniz veya geri bildirimleriniz bizim için değerlidir.
+                    </p>
+                </div>
+
+                <div class="contact-content">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Adınız Soyadınız</label>
+                            <input type="text" id="name" name="name" placeholder="Adınızı ve soyadınızı girin" required>
+                            <span class="error-message" id="nameError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-posta Adresiniz</label>
+                            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <input type="text" id="subject" name="subject" placeholder="Mesajınızın konusunu yazın" required>
+                            <span class="error-message" id="subjectError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                            <span class="error-message" id="messageError"></span>
+                        </div>
+
+                        <button type="submit" class="contact-button">
+                            <span class="button-text">Gönder</span>
+                            <span class="button-loading" style="display: none;">Gönderiliyor...</span>
+                        </button>
+                    </form>
+
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <h3>E-posta</h3>
+                            <p>destek@pomodoro.com</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">⏱️</div>
+                            <h3>Yanıt Süresi</h3>
+                            <p>24-48 saat içinde</p>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">💬</div>
+                            <h3>Geri Bildirim</h3>
+                            <p>Önerileriniz bizim için önemli</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-modal-overlay"></div>
+        <div class="settings-modal-content">
+            <div class="settings-header">
+                <h2 class="settings-title">Ayarlar</h2>
+                <button class="settings-close-btn" id="settingsCloseBtn">×</button>
+            </div>
+            
+            <div class="settings-body">
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Görünüm</h3>
+                    <div class="settings-option">
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="light" id="themeLight">
+                            <span class="radio-label">Light Mode</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="dark" id="themeDark" checked>
+                            <span class="radio-label">Dark Mode</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Ses</h3>
+                    <div class="settings-option">
+                        <label class="slider-option">
+                            <span class="slider-label">Ses Seviyesi</span>
+                            <div class="slider-container">
+                                <input type="range" id="soundVolume" class="slider" min="0" max="100" value="50">
+                                <span class="slider-value" id="soundVolumeValue">50%</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-section-title">Pomodoro Tekniği Hakkında</h3>
+                <p class="footer-about">
+                    Pomodoro Tekniği, 1980'lerde Francesco Cirillo tarafından geliştirilen bir zaman yönetimi yöntemidir. 
+                    25 dakikalık odaklanma seansları ve kısa molalarla çalışarak verimliliğinizi artırın. 
+                    Bu teknik, görevleri daha yönetilebilir parçalara bölerek dikkat dağınıklığını azaltır ve 
+                    konsantrasyonunuzu artırır.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-section-title">Hızlı Erişim</h3>
+                <div class="footer-links">
+                    
+                    <a href="contact.html" class="footer-link">İletişim</a>
+                    <a href="statistics.html" class="footer-link">İstatistikler</a>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script src="../js/contact.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>
+

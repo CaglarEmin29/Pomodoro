@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Anasayfa</title>
+    <link rel="stylesheet" href="../css/anasayfa.css">
+    <link rel="stylesheet" href="../css/settings.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="anasayfa-container">
+        
+        <nav class="top-nav">
+            <div class="nav-content">
+                <h1 class="logo">Pomodoro</h1>
+                <div class="nav-links">
+                    <a href="anasayfa.html" class="nav-link active">Anasayfa</a>
+                    <a href="statistics.html" class="nav-link">İstatistikler</a>
+                    <a href="contact.html" class="nav-link">İletişim</a>
+                    <div class="profile-dropdown">
+                        <button id="profileBtn" class="profile-button">
+                            <img src="../images/bosprofil.png" alt="Profil" class="profile-avatar">
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <div class="dropdown-user-info">
+                                <span id="userEmail" class="user-email"></span>
+                            </div>
+                            <button class="dropdown-item" id="settingsBtn">Ayarlar</button>
+                            <button id="logoutBtn" class="dropdown-item logout-item">Çıkış Yap</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        
+        <div class="main-content">
+            
+            <div class="timer-section rgb-border">
+                <div class="timer-container">
+                    <div class="timer-display">
+                        <span id="timerDisplay">25:00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="startBtn" class="btn btn-primary">BAŞLA</button>
+                        <button id="stopBtn" class="btn btn-secondary" disabled>DURDUR</button>
+                        <button id="finishBtn" class="btn btn-success" disabled>BİTİR</button>
+                    </div>
+                </div>
+
+                <div class="break-options">
+                    <button id="pomodoroBtn" class="btn btn-outline">Pomodoro (25dk)</button>
+                    <button id="shortBreakBtn" class="btn btn-outline">Kısa Mola(5dk)</button>
+                    <button id="longBreakBtn" class="btn btn-outline">Uzun Mola (15dk)</button>
+                </div>
+            </div>
+
+            
+            <div class="task-section rgb-border">
+                <div class="task-header">
+                    <h2>Görev Ekle</h2>
+                </div>
+                <div class="task-input">
+                    <input type="text" id="taskInput" placeholder="Bugün yapmak istediğiniz görevi yazın...">
+                    <button id="addTaskBtn" class="btn btn-primary">+</button>
+                </div>
+                <div class="task-list" id="taskList">
+                    
+                </div>
+            </div>
+
+            
+            <div class="stats-section rgb-border">
+                <div class="stats-card">
+                    <h3>Bugünkü İlerleme</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number" id="fullPomodoros">0</span>
+                            <span class="stat-label">Tam Pomodoro</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="halfPomodoros">0</span>
+                            <span class="stat-label">Eksik Pomodoro</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="todayTime">0sn</span>
+                            <span class="stat-label">Toplam Çalışma Süresi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="settingsModal" class="settings-modal">
+        <div class="settings-modal-overlay"></div>
+        <div class="settings-modal-content">
+            <div class="settings-header">
+                <h2 class="settings-title">Ayarlar</h2>
+                <button class="settings-close-btn" id="settingsCloseBtn">×</button>
+            </div>
+            
+            <div class="settings-body">
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Görünüm</h3>
+                    <div class="settings-option">
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="light" id="themeLight">
+                            <span class="radio-label">Light Mode</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="theme" value="dark" id="themeDark" checked>
+                            <span class="radio-label">Dark Mode</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-divider"></div>
+                
+                
+                <div class="settings-section">
+                    <h3 class="settings-section-title">Ses</h3>
+                    <div class="settings-option">
+                        <label class="slider-option">
+                            <span class="slider-label">Ses Seviyesi</span>
+                            <div class="slider-container">
+                                <input type="range" id="soundVolume" class="slider" min="0" max="100" value="50">
+                                <span class="slider-value" id="soundVolumeValue">50%</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-section-title">Pomodoro Tekniği Hakkında</h3>
+                <p class="footer-about">
+                    Pomodoro Tekniği, 1980'lerde Francesco Cirillo tarafından geliştirilen bir zaman yönetimi yöntemidir. 
+                    25 dakikalık odaklanma seansları ve kısa molalarla çalışarak verimliliğinizi artırın. 
+                    Bu teknik, görevleri daha yönetilebilir parçalara bölerek dikkat dağınıklığını azaltır ve 
+                    konsantrasyonunuzu artırır.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3 class="footer-section-title">Hızlı Erişim</h3>
+                <div class="footer-links">
+                    
+                    <a href="contact.html" class="footer-link">İletişim</a>
+                    <a href="statistics.html" class="footer-link">İstatistikler</a>
+                </div>
+            </div>
+        </div>
+        
+    </footer>
+
+    <script src="../js/anasayfa.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html>
+
