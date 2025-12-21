@@ -1,141 +1,65 @@
-# Pomodoro Uygulaması - Backend
+# Pomodoro - Verimlilik Uygulaması
+##  Projenin Amacı
+Bu projenin temel amacı; kullanıcıların Pomodoro Tekniğini dijital ortamda kolaylıkla uygulayabileceği bir platform tasarlamaktır.
+Uygulama ile kullanıcılar:
+-	Görevler ekleyip takip edebilir.
+- Günlük, haftalık çalışma döngülerini kaydedebilir,
+- Kısa veya uzun molalarla dengeli çalışma düzeni oluşturabilir,
+- Geçmiş performanslarını analiz ederek verimliliklerini artırabilirler.
 
-Bu proje, Pomodoro Tekniğini dijital ortamda uygulayabileceğiniz bir web uygulamasının backend kısmıdır.
 
-## Özellikler
+## 🎯 Özellikler
 
-- ✅ Kullanıcı kayıt ve giriş sistemi
-- ✅ Google OAuth entegrasyonu
-- ✅ SQLite veritabanı
-- ✅ Flask web framework
-- ✅ Güvenli şifre hashleme
-- ✅ Session yönetimi
+### ⏱️ Akıllı Zamanlayıcı
+- 25 dakikalık odaklanma seansları ile çalışın
+- Kısa mola (5 dakika) ve uzun mola (15 dakika) seçenekleri
+- Otomatik seans geçişleri
 
-## Kurulum
+### 📊 Detaylı İstatistikler
+- Günlük, haftalık performans takibi
+- Tamamlanan pomodoro sayısı
+- Toplam çalışma süresi
 
-### 1. Gereksinimler
+### ✅ Görev Yönetimi
+- Görev ekleme ve takibi
+- Tamamlanan görevleri işaretleme
+- Görev silme özelliği
 
-- Python 3.8 veya üzeri
-- pip (Python paket yöneticisi)
+### 🎨 Modern Arayüz
+- Karanlık tema desteği
+- Animasyonlu RGB border efektleri
+- Kullanıcı dostu navigasyon
 
-### 2. Projeyi İndirin
+### ⚙️ Özelleştirilebilir Ayarlar
+- Tema değiştirme (Açık/Koyu)
+- Ses seviyesi kontrolü
 
-```bash
-git clone <repository-url>
-cd kodlar/backend
-```
+## 🚀 Kullanım
 
-### 3. Sanal Ortam Oluşturun
+1. **Misafir Olarak Giriş**: Hemen başlamak için misafir girişi yapabilirsiniz
+2. **Kayıt Ol**: Hesap oluşturarak verilerinizi kaydedin
+3. **Giriş Yap**: Mevcut hesabınızla giriş yapın
 
-```bash
-python -m venv venv
-```
+## 📱 Sayfalar
 
-### 4. Sanal Ortamı Aktifleştirin
 
-**Windows:**
-```bash
-venv\Scripts\activate
-```
+- **Ana Sayfa**:
+- <img width="945" height="454" alt="image" src="https://github.com/user-attachments/assets/10405d8b-1369-4c61-b0ef-31b8ea5894d6" />
+- **İstatistikler**:
+- <img width="945" height="459" alt="image" src="https://github.com/user-attachments/assets/29bc8242-2429-4f0e-ac66-3c91665c8468" />
+- **İletişim**:
+- <img width="1902" height="922" alt="image" src="https://github.com/user-attachments/assets/51fa6fb8-e328-4dec-a38c-17788fe7a505" />
+- **Kayıt Ol - Giriş Yap**:
+<img width="1902" height="925" alt="image" src="https://github.com/user-attachments/assets/4f32e1d5-ca68-45db-aa22-255c830effba" />
+<img width="1899" height="923" alt="image" src="https://github.com/user-attachments/assets/c474214c-ebf4-4f9a-8228-3a91156f5e82" />
+- **Ayarlar**:
+- <img width="767" height="786" alt="image" src="https://github.com/user-attachments/assets/a2534600-a648-4cda-bbce-7a5cff9450b8" />
+- **Tanıtım Sayfası**:
+- <img width="1897" height="920" alt="image" src="https://github.com/user-attachments/assets/6023c87b-c996-42ef-8542-2f378e9cf4aa" />
 
-**macOS/Linux:**
-```bash
-source venv/bin/activate
-```
+## 🛠️ Teknolojiler
 
-### 5. Bağımlılıkları Yükleyin
+- HTML5
+- CSS (Animations, Gradients, Flexbox, Grid)
+- JavaScript (Vanilla)
 
-```bash
-pip install -r requirements.txt
-```
-
-### 6. Çevre Değişkenlerini Ayarlayın
-
-1. `env.example` dosyasını `.env` olarak kopyalayın:
-```bash
-copy env.example .env
-```
-
-2. `.env` dosyasını düzenleyin ve gerekli değerleri girin:
-   - `SECRET_KEY`: Güvenli bir rastgele anahtar
-   - `GOOGLE_CLIENT_ID`: Google OAuth Client ID
-   - `GOOGLE_CLIENT_SECRET`: Google OAuth Client Secret
-
-### 7. Google OAuth Ayarları
-
-1. [Google Cloud Console](https://console.cloud.google.com/)'a gidin
-2. Yeni bir proje oluşturun veya mevcut projeyi seçin
-3. "APIs & Services" > "Credentials" bölümüne gidin
-4. "Create Credentials" > "OAuth 2.0 Client IDs" seçin
-5. Application type olarak "Web application" seçin
-6. Authorized redirect URIs'ye şunu ekleyin:
-   ```
-   http://localhost:5000/auth/google/callback
-   ```
-7. Client ID ve Client Secret'i `.env` dosyasına ekleyin
-
-### 8. Uygulamayı Çalıştırın
-
-```bash
-python app.py
-```
-
-Uygulama `http://localhost:5000` adresinde çalışacaktır.
-
-## API Endpoints
-
-### Kimlik Doğrulama
-
-- `POST /register` - Email ve şifre ile kayıt
-- `POST /login` - Email ve şifre ile giriş
-- `GET /logout` - Çıkış yap
-- `GET /auth/google` - Google OAuth ile giriş
-- `GET /auth/google/callback` - Google OAuth callback
-
-### Kullanıcı
-
-- `GET /api/user` - Giriş yapmış kullanıcı bilgileri
-
-## Örnek Kullanım
-
-### Kayıt Olma
-
-```bash
-curl -X POST http://localhost:5000/register \
-  -H "Content-Type: application/json" \
-  -d '{"email": "test@example.com", "password": "123456"}'
-```
-
-### Giriş Yapma
-
-```bash
-curl -X POST http://localhost:5000/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "test@example.com", "password": "123456"}'
-```
-
-## Proje Yapısı
-
-```
-backend/
-├── app.py              # Ana Flask uygulaması
-├── models.py           # Veritabanı modelleri
-├── auth.py             # Kimlik doğrulama route'ları
-├── config.py           # Yapılandırma ayarları
-├── requirements.txt    # Python bağımlılıkları
-└── pomodoro.db         # SQLite veritabanı (otomatik oluşur)
-```
-
-## Geliştirme Notları
-
-- Veritabanı tabloları uygulama ilk çalıştırıldığında otomatik oluşturulur
-- Debug modu aktif olduğunda detaylı hata mesajları gösterilir
-- Şifreler bcrypt ile güvenli şekilde hashlenir
-- Session'lar 1 saat süreyle geçerlidir
-
-## Sonraki Adımlar
-
-- [ ] Pomodoro timer endpoint'leri
-- [ ] Görev yönetimi sistemi
-- [ ] İstatistik ve raporlama
-- [ ] Frontend entegrasyonu
