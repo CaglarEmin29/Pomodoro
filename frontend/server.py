@@ -18,7 +18,7 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
     with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
-        index_url = f'http://localhost:{PORT}/html/index.html'
+        index_url = f'http://localhost:{PORT}/html/tanitim.html'
         print(f"Frontend sunucusu http://localhost:{PORT} adresinde çalışıyor")
         print(f"Ana sayfa: {index_url}")
         print("Tarayıcıda otomatik açılıyor...")

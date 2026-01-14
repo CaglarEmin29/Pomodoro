@@ -37,16 +37,16 @@ const totalPomodorosChart = document.getElementById('totalPomodorosChart');
 let totalTimeChartInstance = null;
 let totalPomodorosChartInstance = null;
 
-// Zaman Filtresi Değiştirme
+
 filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Aktif butonu güncelle
+        
         filterButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
         const period = btn.dataset.period;
         
-        // Body'ye period class'ı ekle (CSS için)
+       
         document.body.className = document.body.className.replace(/period-\w+/g, '');
         document.body.classList.add(`period-${period}`);
         
@@ -69,21 +69,21 @@ async function loadStatistics(period = 'daily') {
             const stats = data.statistics;
             const sessions = stats.sessions || [];
             
-            // Backend'den gelen verileri kullan
+            
             const chartData = buildChartDataFromSessions(sessions, period);
             
-            // Önce özet bilgilerini güncelle (hemen görünsün)
+           
             updateSummary(stats, period);
             
-            // Sonra grafikleri güncelle (aynı anda)
+            
             requestAnimationFrame(() => {
                 updateCharts(chartData, period, stats);
             });
             
-            // Görev bazlı detayları göster
+           
             updateCompletedList(stats.task_statistics || []);
         } else {
-            // API çalışmazsa mock data göster
+           
             console.warn('Backend API hatası, mock data kullanılıyor');
             const mockData = generateMockData(period);
             updateCharts(mockData.chartData, period);
@@ -117,6 +117,7 @@ function buildChartDataFromSessions(sessions, period) {
     
     if (period === 'daily') {
         // Günlük: Bugünün verileri
+        // Backend'den gelen sessions zaten bugünün verileri (period'a göre filtrelenmiş)
         const todayLabel = today.toLocaleDateString('tr-TR', { 
             weekday: 'long',
             day: 'numeric',
@@ -124,18 +125,13 @@ function buildChartDataFromSessions(sessions, period) {
         });
         chartData.labels.push(todayLabel);
         
-        // Bugünkü work session'ları filtrele
-        const todaySessions = sessions.filter(s => {
-            if (!s.ended_at) return false;
-            const sessionDate = new Date(s.ended_at);
-            sessionDate.setHours(0, 0, 0, 0);
-            return sessionDate.getTime() === today.getTime() && s.session_type === 'work';
-        });
+        // Backend'den gelen tüm sessions bugünün verileri, sadece work session'ları filtrele
+        const workSessions = sessions.filter(s => s.session_type === 'work');
         
         let fullCount = 0;
         let halfCount = 0;
         let totalMinutes = 0;
-        todaySessions.forEach(s => {
+        workSessions.forEach(s => {
             const duration = s.duration_minutes || 0;
             totalMinutes += duration;
             if (duration >= 25.0) {
@@ -871,7 +867,7 @@ function initProfileDropdown() {
                 localStorage.setItem('theme', savedTheme);
             }
             
-            window.location.href = 'index.html';
+            window.location.href = 'tanitim.html';
         });
     }
     
@@ -905,28 +901,28 @@ async function loadUserInfo() {
     }
 }
 
-// Sayfa Yüklendiğinde
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Tema yükle
+    
     loadTheme();
     
-    // Profil dropdown'ı başlat
+    
     initProfileDropdown();
     
-    // Kullanıcı bilgilerini yükle
+    
     loadUserInfo();
     
-    // Varsayılan olarak günlük istatistikleri yükle
+    
     document.body.classList.add('period-daily');
     loadStatistics('daily');
     
-    // Tema değiştiğinde grafikleri yeniden çiz
+    
     window.addEventListener('themeChanged', () => {
         const activePeriod = document.querySelector('.filter-btn.active')?.dataset.period || 'daily';
         loadStatistics(activePeriod);
     });
     
-    // Chart.js yüklenmesini bekle
+    
     if (typeof Chart === 'undefined') {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';

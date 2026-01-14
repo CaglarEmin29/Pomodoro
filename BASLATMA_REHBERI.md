@@ -97,7 +97,7 @@ http://localhost:5000
 ### 2. Frontend Kontrolü
 Tarayıcınızda şu adresi açın:
 ```
-http://localhost:3000/html/index.html
+http://localhost:3000/html/tanitim.html
 ```
 
 Ana sayfa görünmelidir.
@@ -106,7 +106,7 @@ Ana sayfa görünmelidir.
 
 ## 🎯 KULLANIM
 
-1. **Frontend sunucusu** çalışırken tarayıcıda `http://localhost:3000/html/index.html` adresine gidin
+1. **Frontend sunucusu** çalışırken tarayıcıda `http://localhost:3000/html/tanitim.html` adresine gidin
 2. Kayıt olun veya giriş yapın
 3. Uygulamayı kullanmaya başlayın!
 

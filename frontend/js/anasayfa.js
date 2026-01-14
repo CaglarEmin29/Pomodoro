@@ -2,8 +2,8 @@
 const API_BASE_URL = 'http://localhost:5000';
 
 // Ses dosyaları
-const startSound = new Audio('../basla.mp3');
-const completeSound = new Audio('../pomodoro_tamamlandi.mp3');
+const startSound = new Audio('../audio/basla.mp3');
+const completeSound = new Audio('../audio/pomodoro_tamamlandi.mp3');
 
 // Web Audio API için context ve gain node'lar
 let audioContext = null;
@@ -288,7 +288,7 @@ if (logoutBtn) {
         
         // Ana sayfaya yönlendir
         console.log('Ana sayfaya yönlendiriliyor...');
-        window.location.href = 'index.html';
+        window.location.href = 'tanitim.html';
     });
 }
 

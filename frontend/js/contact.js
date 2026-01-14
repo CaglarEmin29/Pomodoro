@@ -13,18 +13,18 @@ async function loadTheme() {
         const isAuthenticated = response.ok;
         
         if (!isAuthenticated) {
-            // Misafir kullanıcı: localStorage'ı temizle, dark mode kullan
+            
             localStorage.removeItem('theme');
             document.body.classList.remove('light-mode');
             document.body.classList.add('dark-mode');
         } else {
-            // Giriş yapmış kullanıcı: localStorage'dan tema yükle
+           
             const savedTheme = localStorage.getItem('theme') || 'dark';
             document.body.classList.remove('light-mode', 'dark-mode');
             document.body.classList.add(savedTheme === 'light' ? 'light-mode' : 'dark-mode');
         }
     } catch (error) {
-        // Hata durumunda dark mode
+        
         document.body.classList.remove('light-mode');
         document.body.classList.add('dark-mode');
     }
@@ -198,7 +198,7 @@ if (logoutBtn) {
             localStorage.setItem('theme', savedTheme);
         }
         
-        window.location.href = 'index.html';
+        window.location.href = 'tanitim.html';
     });
 }
 
